@@ -1,28 +1,39 @@
+//  @ Ejercicio 2
+//  @ File Name : Funcionamiento.java
+//  @ Date : 27/08/2024
+//  @ Author : Alejandro Manuel Jerez Melgar 24678
+//
+
 import java.util.Date;
 
 public class Funcionamiento {
-    Proyecto []proyectos=new Proyecto[5];
-    Desarrollador []desarrolladors=new Desarrollador[10];
+    //Atributos
+    private Proyecto []proyectos=new Proyecto[5];
+    private Desarrollador []desarrolladors=new Desarrollador[10];
     private int proyectoCount=0;
     private int desarrolladorCount=0;
     int contador=1;
 
+    //Metodo para crear Proyectos
     public Proyecto crearProyecto(String nombre, String codigo, String categoria, Desarrollador dJ, Desarrollador dS, Date fecha) {
         Proyecto nuevoProyecto = new Proyecto(nombre, codigo, categoria, dJ, dS, fecha);
         return nuevoProyecto;
 
     }
 
+    //Metodo para crear Desarrolladores
     public Desarrollador crearDesarrollador(String nombre, String puesto) {
         Desarrollador nuevoDesarrollador = new Desarrollador(nombre, puesto);
         return nuevoDesarrollador;
     }
 
+    //Metodo para crear Tareas
     public Tarea crearTarea(String nombre, String tipo, Desarrollador desarrollador, float tE, float tR, String estado) {
         Tarea nuevaTarea = new Tarea(nombre, tipo, desarrollador, tE, tR, estado);
         return nuevaTarea;
     }
 
+    //Metodo para agregar Proyectos al arreglo proyectos
     public boolean agregarProyecto(Proyecto proyecto) {
         if (proyectoCount < proyectos.length) {
             proyectos[proyectoCount] = proyecto;
@@ -33,6 +44,7 @@ public class Funcionamiento {
         }
     }
 
+    //Metodo para agregar Desarrolladroes al arreglo desarrolladoes
     public boolean agregarDesarrollador(Desarrollador desarrollador) {
         if (desarrolladorCount < desarrolladors.length) {
             desarrolladors[desarrolladorCount] = desarrollador;
@@ -43,25 +55,30 @@ public class Funcionamiento {
         }
     }
 
+    //Metodo para crear codigo unico para cada proyecto
     public String codigoProyecto(String fecha){
         String codigoBoleto=fecha+contador;
         contador++;
         return codigoBoleto;
     }
 
+    //Metood para verificar si un desarrollador es Junior
     public boolean esDesarrolladorJunior(Desarrollador desarrollador) {
         return desarrollador.getPuesto().equalsIgnoreCase("Junior");
     }
 
+    //Metood para verificar si un desarrollador es Senior
     public boolean esDesarrolladorSenior(Desarrollador desarrollador) {
         return desarrollador.getPuesto().equalsIgnoreCase("Senior");
     }
 
+    //Metodo para editar tareas de un proyecto especifico
     public void editarTarea(Tarea tareaSeleccionada, String estado){
         tareaSeleccionada.setEstado(estado);
 
     }
 
+    //Metodo para mostrar todos los proyectos junto a sus tareas
     public String mostrarProyectos() {
         StringBuilder finalString = new StringBuilder();
     
@@ -90,18 +107,33 @@ public class Funcionamiento {
         return finalString.toString();
     }
 
+    /**
+     * 
+     * @return desarrolladors
+     */
     public Desarrollador[] getDesarrolladors() {
         return desarrolladors;
     }
 
-    // Método para obtener la lista de tareas
+    /**
+     * 
+     * @return proyectos
+     */
     public Proyecto[] getProyectos() {
         return proyectos;
     }
 
+    /**
+     * 
+     * @return desarrolladorCount
+     */
     public int getDesarrolladorCount() {
         return desarrolladorCount;
     }
+    /**
+     * 
+     * @return proyectoCount
+     */
     public int getProyectoCount() {
         return proyectoCount;
     }

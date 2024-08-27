@@ -1,3 +1,9 @@
+//  @ Ejercicio 2
+//  @ File Name : GestorProyectos.java
+//  @ Date : 27/08/2024
+//  @ Author : Alejandro Manuel Jerez Melgar 24678
+//
+
 import java.util.Scanner;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -5,12 +11,12 @@ import java.text.SimpleDateFormat;
 public class GestorProyectos {
 
     public static void main(String[] args) {
+        //se inicializan las variables
 
         String nombreP;
         String nombreD;
         String nombreT;
         Proyecto proyectoSeleccionado;
-        
 
         Funcionamiento funcionamiento=new Funcionamiento();
        
@@ -22,6 +28,7 @@ public class GestorProyectos {
 
         Scanner teclado=new Scanner(System.in);
 
+        //ciclo principal, es el encargado de la navegacion
         while (eleccion!=6) {
             if (eleccion == 1) {
                 if (funcionamiento.getDesarrolladorCount()<2) {
@@ -90,11 +97,13 @@ public class GestorProyectos {
         boolean verificador=false;
         
 
+        //Menu principal
         while (verificador==false) {
             System.out.println("\nMenu\nSeleccion lo que deses realizar\n1. Crear nuevo proyecto\n2. Agregar tarea a proyecto\n3. Crear nuevo desarrollador\n4. Actualizar estado de tarea\n5. Generar reporte de progreso\n6. Salir");
             eleccionUsuarioS=teclado.nextLine();
 
             try { 
+                //verifica que el dato ingresado sea un int
                 eleccionUsuarioi=Integer.parseInt(eleccionUsuarioS);
                 if(eleccionUsuarioi<1 ||eleccionUsuarioi>6){
                     System.out.println("Ingrese una de las opciones del menu");
@@ -119,6 +128,7 @@ public class GestorProyectos {
         boolean verificador=false;
         
 
+        // Meni de categoria de proyecto
         while (verificador==false) {
             System.out.println("\nSeleccion la categoria del proyecto\n1. Desarrollo\n2. Mantenimiento");
             eleccionUsuarioS=teclado.nextLine();
@@ -155,6 +165,7 @@ public class GestorProyectos {
         boolean verificador=false;
         
 
+        //Menu del puesto del desarrollador
         while (verificador==false) {
             System.out.println("\nSeleccion el puesto del desarrollador\n1. Junior\n2. Senior");
             eleccionUsuarioS=teclado.nextLine();
@@ -193,6 +204,7 @@ public class GestorProyectos {
         
 
         while (verificador==false) {
+            //menu de tipo de tarea
             System.out.println("\nSeleccion el tipo de tarea\n1. Desarrollo\n2. Pruebas\n3. Documentacion");
             eleccionUsuarioS=teclado.nextLine();
 
@@ -233,6 +245,7 @@ public class GestorProyectos {
         
 
         while (verificador==false) {
+            //menu de estado de la tarea 
             System.out.println("\nSeleccion el nuevo estado de la tarea\n1. Completada\n2. Proceso\n3. No iniciada");
             eleccionUsuarioS=teclado.nextLine();
 
@@ -271,6 +284,7 @@ public class GestorProyectos {
         
 
         while (verificador==false) {
+            //verifica que se ingrese un float
             System.out.println("\nIngrese el timpo estimado para la tarea");
             eleccionUsuarioS=teclado.nextLine();
 
@@ -309,6 +323,8 @@ public class GestorProyectos {
 
         while (verificador==false) {
             System.out.println("Seleccione un desarrollador junior:");
+
+            //muestra a los desarrolladores Junior
             for (int i = 0; i < count; i++) {
                 System.out.println((i + 1) + ". " + desarrolladoresJuniors[i].getNombre() + " - " + desarrolladoresJuniors[i].getPuesto());
             }
@@ -341,7 +357,7 @@ public class GestorProyectos {
         Scanner teclado=new Scanner(System.in);
         
 
-        // Filtrar desarrolladores juniors
+        // Filtrar desarrolladores senior
         for (int i = 0; i < desarrolladorCount; i++) {
             if (funcionamiento.esDesarrolladorSenior(desarrolladors[i])) {
                 desarrolladoresSenior[count] = desarrolladors[i];
@@ -352,6 +368,8 @@ public class GestorProyectos {
 
         while (verificador==false) {
             System.out.println("Seleccione un desarrollador junior:");
+
+            //Muestra a los desarrolladores senior
             for (int i = 0; i < count; i++) {
                 System.out.println((i + 1) + ". " + desarrolladoresSenior[i].getNombre() + " - " + desarrolladoresSenior[i].getPuesto());
             }
@@ -386,6 +404,8 @@ public class GestorProyectos {
 
         while (verificador==false) {
             System.out.println("Seleccione proyecto para agregar tarea:");
+
+            //Muestra todos los proyectos
             for (int i = 0; i < proyectosCount; i++) {
                 System.out.println((i + 1) + ". " + proyectos[i].getNombre());
             }
@@ -408,7 +428,8 @@ public class GestorProyectos {
     }
 
     public static Desarrollador seleccionarDesarrolladorTareas(Proyecto proyecto) {
-
+        
+        //Almacena a todos los desarrolladores dle proyecto
         Desarrollador[] desarrolladorsProyecto={proyecto.getdJ(), proyecto.getdS()};
 
         boolean verificador=false;
@@ -420,6 +441,8 @@ public class GestorProyectos {
 
         while (verificador==false) {
             System.out.println("Seleccione proyecto para agregar tarea:");
+
+            //Muestra a todos los desarrolladores del proyecto
             for (int i = 0; i < desarrolladorsProyecto.length; i++) {
                 System.out.println((i + 1) + ". " + desarrolladorsProyecto[i].getNombre() + " - " + desarrolladorsProyecto[i].getPuesto());
             }
@@ -442,7 +465,8 @@ public class GestorProyectos {
     }
 
     public static Tarea seleccionarTareaEditar(Proyecto proyecto) {
-
+        
+        //ALmacena a todas las tareas del proyecto 
         Tarea[] tareas= proyecto.getTareas();
 
         boolean verificador=false;
@@ -454,6 +478,8 @@ public class GestorProyectos {
 
         while (verificador==false) {
             System.out.println("Seleccione la tarea a editar:");
+
+            //Muestra a todas las tareas del proyecto
             for (int i = 0; i < tareas.length; i++) {
                 System.out.println((i + 1) + ". " + tareas[i].getNombre() + " - " + tareas[i].getEstado());
             }
